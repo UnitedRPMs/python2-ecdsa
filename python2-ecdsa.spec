@@ -1,8 +1,8 @@
 %global srcname ecdsa
 
 Name:           python2-%{srcname}
-Version:        0.13
-Release:        18%{?dist}
+Version:        0.13.3
+Release:        7%{?dist}
 Summary:        ECDSA cryptographic signature library
 
 License:        MIT
@@ -17,6 +17,7 @@ BuildRequires:  openssl
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
 BuildRequires:  python2-six
+BuildRequires:	python2-rpm-macros
 Requires:       python2-six
 %{?python_provide:%python_provide python2-%{srcname}}
 
@@ -56,6 +57,9 @@ rm ecdsa/six.py
 %{python2_sitelib}/*
 
 %changelog
+
+* Thu Oct 31 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 0.13.3-7
+- Updated to 0.13.3
 
 * Mon Feb 18 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 0.13-18
 - Upstream

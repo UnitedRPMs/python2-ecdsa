@@ -1,16 +1,16 @@
-diff -up ecdsa-0.13/ecdsa/test_pyecdsa.py.noweak ecdsa-0.13/ecdsa/test_pyecdsa.py
---- ecdsa-0.13/ecdsa/test_pyecdsa.py.noweak	2015-02-07 11:16:22.000000000 -0700
-+++ ecdsa-0.13/ecdsa/test_pyecdsa.py	2015-12-14 09:56:23.085656270 -0700
-@@ -8,7 +8,7 @@ import subprocess
+diff -ruN orig/ecdsa/test_pyecdsa.py new/ecdsa/test_pyecdsa.py
+--- orig/ecdsa/test_pyecdsa.py	2019-10-07 07:51:57.000000000 -0600
++++ new/ecdsa/test_pyecdsa.py	2019-11-01 01:11:53.529156505 -0600
+@@ -11,7 +11,7 @@
  from binascii import hexlify, unhexlify
  from hashlib import sha1, sha256, sha512
  
 -from .six import b, print_, binary_type
 +from six import b, print_, binary_type
  from .keys import SigningKey, VerifyingKey
- from .keys import BadSignatureError
+ from .keys import BadSignatureError, MalformedPointError, BadDigestError
  from . import util
-@@ -331,10 +331,6 @@ class OpenSSL(unittest.TestCase):
+@@ -500,10 +500,7 @@
      # vk: 3:OpenSSL->python  4:python->OpenSSL
      # sig: 5:OpenSSL->python 6:python->OpenSSL
  
@@ -18,10 +18,11 @@ diff -up ecdsa-0.13/ecdsa/test_pyecdsa.py.noweak ecdsa-0.13/ecdsa/test_pyecdsa.p
 -        return self.do_test_from_openssl(NIST192p)
 -    def test_from_openssl_nist224p(self):
 -        return self.do_test_from_openssl(NIST224p)
++
      def test_from_openssl_nist256p(self):
          return self.do_test_from_openssl(NIST256p)
      def test_from_openssl_nist384p(self):
-@@ -370,10 +366,6 @@ class OpenSSL(unittest.TestCase):
+@@ -539,10 +536,7 @@
          sig = sk.sign(data)
          self.assertTrue(vk.verify(sig, data))
  
@@ -29,6 +30,7 @@ diff -up ecdsa-0.13/ecdsa/test_pyecdsa.py.noweak ecdsa-0.13/ecdsa/test_pyecdsa.p
 -        self.do_test_to_openssl(NIST192p)
 -    def test_to_openssl_nist224p(self):
 -        self.do_test_to_openssl(NIST224p)
++
      def test_to_openssl_nist256p(self):
          self.do_test_to_openssl(NIST256p)
      def test_to_openssl_nist384p(self):
